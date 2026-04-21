@@ -1,0 +1,28 @@
+services:
+  - type: cron
+    name: survey123-doc-generator
+    runtime: python
+    schedule: "*/10 * * * *"
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "python main.py"
+    envVars:
+      - key: AGOL_URL
+        value: https://www.arcgis.com
+      - key: AGOL_USERNAME
+        sync: false
+      - key: AGOL_PASSWORD
+        sync: false
+      - key: SURVEY_ITEM_ID
+        sync: false
+      - key: LAYER_INDEX
+        value: "0"
+      - key: REPORT_STATUS_FIELD
+        value: report_status
+      - key: COA_TEMPLATE_PATH
+        value: ./templates/HGDM-COA (formal).docx
+      - key: NOTICE_TEMPLATE_PATH
+        value: ./templates/NOTICE OF COMPLIANCE V2.docx
+      - key: TEMP_DIR
+        value: /tmp/reports
+      - key: SKIP_IF_ATTACHMENT_ALREADY_EXISTS
+        value: "false"
